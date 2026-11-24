@@ -14,5 +14,10 @@
   { "id": "trig-13", "split": "test", "should_trigger": false, "prompt": "Refactor getNoteBlockFromPos to avoid scanning all blocks twice." },
   { "id": "trig-14", "split": "test", "should_trigger": false, "prompt": "Generate a regex that matches ISO-8601 timestamps with optional offsets." },
   { "id": "trig-15", "split": "test", "should_trigger": false, "prompt": "Add a unit test for empty buffer archiving in Vitest." },
-  { "id": "trig-16", "split": "test", "should_trigger": false, "prompt": "Inspect git worktree list and tell me which branches are unmerged." }
+  { "id": "trig-16", "split": "test", "should_trigger": false, "prompt": "Inspect git worktree list and tell me which branches are unmerged." },
+  { "id": "trig-17", "split": "dev", "should_trigger": true, "competes_with": "humanizer", "prompt": "Remove the AI tells from this launch blog post so it sounds like a person wrote it." },
+  { "id": "trig-18", "split": "dev", "should_trigger": true, "competes_with": "humanizer", "prompt": "This design doc reads like ChatGPT wrote it. Humanize it so the team can actually follow it." },
+  { "id": "trig-19", "split": "dev", "should_trigger": false, "competes_with": "humanizer", "prompt": "Scan this paragraph and list the phrases that look AI-generated. Don't rewrite anything." },
+  { "id": "trig-20", "split": "test", "should_trigger": true, "competes_with": "humanizer", "prompt": "De-slop these release notes and make them easier to read." },
+  { "id": "trig-21", "split": "test", "should_trigger": false, "competes_with": "humanizer", "prompt": "Estimate how likely it is that this essay was written by AI." }
 ]
