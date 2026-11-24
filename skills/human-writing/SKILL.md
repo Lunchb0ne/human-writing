@@ -4,7 +4,7 @@ description: Write and edit prose so that it is easy for humans to read on a sin
 license: MIT
 metadata:
   author: Abhishek Aryan
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # Human Writing
@@ -33,10 +33,12 @@ Your job is to spend those few words back where a reader would otherwise stumble
 2. **Stacked nouns.** A chain of three or more nouns that the writer coined on the spot forces the reader to guess which noun modifies which. Unpack those chains with a preposition or a short clause, and keep every word of the original.
    - Before: "the cache invalidation pipeline manager" → After: "the manager for the cache invalidation pipeline"
    - Leave compounds alone when readers of the document already know them as one term, such as "per-tenant LRU cache", "HTTP status code", or "PgBouncer saturation dashboard". Unpacking a familiar term into "the dashboard for PgBouncer saturation" makes it harder to read, not easier.
+   - A term is familiar only if readers would search for it by that exact name. A description that the writer could have phrased another way is not a term: "build artifact upload step" → "the step that uploads build artifacts".
 
 3. **Objects with minds.** Code, files, and documents do not remember, know, want, expect, promise, decide, refuse, forget, swallow, or bite. Say what actually happens.
    - Before: "`focusBand` remembers the index, and the docstring promises dotfiles are skipped."
    - After: "`focusBand` stores the index, and the docstring says that dotfiles are skipped."
+   - The same applies when an event or a process does what a person does. If a person or team performs the action, name them: "Rollback flips reads back" → "To roll back, we flip reads back."
 
 4. **Long gaps between subject and verb.** Do not make the reader hold a subject through a parenthetical, a list, or a long modifier. Move that material after the verb or into its own sentence.
    - Before: "Shared controls (buttons, inputs, switches, and carets) live in Sass."
@@ -62,6 +64,12 @@ Your job is to spend those few words back where a reader would otherwise stumble
 
 1. Read the text once and note every place where you had to slow down or go back.
 2. Fix those places with the checks above. Start with the paragraph structure, then fix long sentences, parentheticals, and noun chains.
-3. Read the result from start to finish as a newcomer would. If your attention snags anywhere, fix that sentence again.
+3. Edit your own result a second time before you return it, as if another writer had handed it to you. The first edit fixes the big problems and usually leaves a few small ones behind. Check every sentence for these:
+   - a chain of three or more nouns that is still left
+   - an object, event, or process that still does what a person does
+   - a condition or goal that comes after the action that depends on it
+   - a word such as "it", "they", or "the others" that could point to two things; name the thing instead
+   - a paragraph that changes topic halfway; split it where the topic changes
+4. Return only the result of the second edit.
 
-When drafting from scratch, write the draft first, then run the same pass over it.
+When drafting from scratch, write the draft first, then run both edits over it.
