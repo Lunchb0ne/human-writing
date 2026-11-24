@@ -1,0 +1,18 @@
+[
+  { "id": "trig-01", "split": "dev", "should_trigger": true, "prompt": "Clean up this README section so new contributors can read it quickly." },
+  { "id": "trig-02", "split": "dev", "should_trigger": true, "prompt": "Rewrite my PR description so reviewers don't have to re-read every sentence." },
+  { "id": "trig-03", "split": "dev", "should_trigger": true, "prompt": "Draft an engineering decision note explaining why we dropped Vite's renderer plugin." },
+  { "id": "trig-04", "split": "dev", "should_trigger": true, "prompt": "Make this technical blog post easier to follow without losing precision." },
+  { "id": "trig-05", "split": "dev", "should_trigger": false, "prompt": "Write a SQL migration adding an index on user_id and created_at." },
+  { "id": "trig-06", "split": "dev", "should_trigger": false, "prompt": "Fix the TypeScript type error in src/editor/todo-checkbox.ts." },
+  { "id": "trig-07", "split": "dev", "should_trigger": false, "prompt": "Parse this CSV file and output valid JSON grouped by region." },
+  { "id": "trig-08", "split": "dev", "should_trigger": false, "prompt": "Run the Playwright test suite and debug why test 3 failed." },
+  { "id": "trig-09", "split": "test", "should_trigger": true, "prompt": "Edit this email to my manager so the rollout risk is clear on one read." },
+  { "id": "trig-10", "split": "test", "should_trigger": true, "prompt": "Revise these release notes for v3.0.0 so they read naturally." },
+  { "id": "trig-11", "split": "test", "should_trigger": true, "prompt": "Humanize and clarify this dense architecture summary." },
+  { "id": "trig-12", "split": "test", "should_trigger": true, "prompt": "Write the onboarding guide for our internal CLI tool." },
+  { "id": "trig-13", "split": "test", "should_trigger": false, "prompt": "Refactor getNoteBlockFromPos to avoid scanning all blocks twice." },
+  { "id": "trig-14", "split": "test", "should_trigger": false, "prompt": "Generate a regex that matches ISO-8601 timestamps with optional offsets." },
+  { "id": "trig-15", "split": "test", "should_trigger": false, "prompt": "Add a unit test for empty buffer archiving in Vitest." },
+  { "id": "trig-16", "split": "test", "should_trigger": false, "prompt": "Inspect git worktree list and tell me which branches are unmerged." }
+]
