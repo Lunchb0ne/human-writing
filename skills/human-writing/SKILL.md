@@ -52,7 +52,7 @@ For background from Clark, Martin, and Mahowald (2026), see [the research notes]
 ## Guardrails
 
 - Preserve every code identifier, file path, flag, command, number, URL, and caveat verbatim.
-- Keep technical accuracy high. Clarify syntax without dumbing down domain concepts.
+- Preserve every causal link, actor, and prepositional relationship when you unpack nouns or split clauses. Do not invent causal connectors (such as `because`), turn purpose (`to prevent`) into guaranteed effect (`prevents`), drop an actor, or attach parenthetical config to the wrong verb.
 - Keep total length close to the source or natural length. Do not add filler, throat-clearing, or repetitive summaries.
 
 ## Workflow
