@@ -4,3 +4,17 @@ noskill	70ae936	claude-sonnet-5-5	dev	baseline	8/8	1.209	11.20	-	0	en_core_web_s
 iter-00	70ae936	claude-sonnet-5-5	dev	baseline	8/8	1.322	6.32	0.6250	396	v0 vs noskill (5W/3L/0T) judge=gpt-sol-latest std_dl=2.394 gate_fail=4(len>1.35) judge_preserve=4.750
 noskill	70ae936	gemini-4-neon	dev	baseline	8/8	1.106	10.52	-	0	en_core_web_sm std_dl=2.391 gate_fail=0 judge_preserve=4.625
 iter-00	70ae936	gemini-4-neon	dev	baseline	8/8	1.266	3.21	0.5000	396	v0 vs noskill (4W/4L/0T) judge=gpt-sol-latest std_dl=2.194 gate_fail=1(len>1.35) judge_preserve=4.750
+noskill-dev2	ws	claude-sonnet-5-5	dev	baseline	32/32	1.154	4.82	-	0	dev2 baseline gate_fail=2(len) skill_words=wc
+noskill-dev2	ws	gpt-sol-latest	dev	baseline	32/32	1.088	4.13	-	0	dev2 baseline gate_fail=2(len) skill_words=wc
+v1-dev2	ws	claude-sonnet-5-5	dev	baseline	32/32	1.144	3.95	0.4375	587	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v1 vs noskill (14W/18L/0T) judge=gpt-sol-latest gate_fail=1(len) skill_words=wc
+v1-dev2	ws	gpt-sol-latest	dev	baseline	32/32	1.144	2.58	0.6774	587	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v1 vs noskill (16W/5L/10T) judge=claude-opus-5-5 gate_fail=3(len) skill_words=wc
+v2-dev2	ws	claude-sonnet-5-5	dev	reverted	32/32	1.174	3.45	0.6250	760	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v2 vs noskill (20W/12L/0T) judge=gpt-sol-latest gate_fail=3(len) | superseded: v5 beat v2 head-to-head 34W/21L/9T skill_words=wc
+v2-dev2	ws	gpt-sol-latest	dev	reverted	32/32	1.154	2.65	0.7188	760	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v2 vs noskill (20W/6L/6T) judge=claude-opus-5-5 gate_fail=2(len) | superseded: v5 beat v2 head-to-head 34W/21L/9T skill_words=wc
+v3-dev2	ws	claude-sonnet-5-5	dev	reverted	32/32	1.140	3.84	0.5000	818	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v3 vs noskill (16W/16L/0T) judge=gpt-sol-latest gate_fail=0(len) | tie with v2 within noise; folded into v5 skill_words=wc
+v3-dev2	ws	gpt-sol-latest	dev	reverted	32/32	1.150	2.89	0.7031	818	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v3 vs noskill (21W/8L/3T) judge=claude-opus-5-5 gate_fail=3(len) | tie with v2 within noise; folded into v5 skill_words=wc
+v4-dev2	ws	claude-sonnet-5-5	dev	reverted	32/32	1.141	4.07	0.5312	918	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v4 vs noskill (17W/15L/0T) judge=gpt-sol-latest gate_fail=1(len) | tie with v2 within noise; folded into v5 skill_words=wc
+v4-dev2	ws	gpt-sol-latest	dev	reverted	32/32	1.128	2.96	0.6719	918	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v4 vs noskill (20W/9L/3T) judge=claude-opus-5-5 gate_fail=2(len) | tie with v2 within noise; folded into v5 skill_words=wc
+v5-dev2	ws	claude-sonnet-5-5	dev	kept	32/32	1.172	3.85	0.6250	1018	dev2 (32 items: 8 natural, 8 terse, 8 draft, 8 sentence) v5 vs noskill (20W/12L/0T) judge=gpt-sol-latest gate_fail=2(len) | v5 vs v2 head-to-head: sonnet 21W/9L/2T judge=gpt-sol-latest, gpt 13W/12L/7T judge=claude-opus-5-5 skill_words=wc
+v5-dev2	ws	gpt-sol-latest	dev	kept	32/32	1.149	2.52	-	1018	dev2 v5 vs noskill not judged for this writer gate_fail=4(len) | v5 vs v2 head-to-head: sonnet 21W/9L/2T judge=gpt-sol-latest, gpt 13W/12L/7T judge=claude-opus-5-5 skill_words=wc
+v5-heldout	ws	claude-sonnet-5-5	test	kept	6/6	-	-	0.5000	1018	6 GLM-written held-out passages, v5 vs noskill (3W/3L/0T) judge=gpt-sol-latest preserve 5.00 vs 4.50
+v5-heldout	ws	gpt-sol-latest	test	kept	6/6	-	-	0.8333	1018	6 GLM-written held-out passages, v5 vs noskill (5W/1L/0T) judge=claude-opus-5-5 preserve 5.00 vs 4.33

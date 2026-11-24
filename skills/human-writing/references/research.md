@@ -25,6 +25,7 @@ Modern LLMs undergo extensive post-training for math, coding, and verifiable-rew
 - **Results:**
   - Adding a per-token length penalty shifted models toward the shorter variant even though both variants earned equal correctness reward.
   - Without KL regularization, models collapsed to over 98% short-variant usage on trained `that` alternations at every positive length penalty.
+  - Human writers use both variants and choose by context. They keep an optional `that` more often when the words after it are hard to predict. The trained models lost that context sensitivity, so the fix is to restore cue words where a reader could misparse, not to add them everywhere.
   - The compression habit generalized to untrained alternations: near transfer (`so (that)`, `sure (that)`) shifted consistently, and far transfer appeared on genitives without KL regularization.
 
 ## The Six Features Measured
