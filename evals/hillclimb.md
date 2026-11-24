@@ -5,7 +5,7 @@ Follow an `autoresearch`-style keep/revert loop against a clear quantitative bas
 ## 1. Establish the Baseline (`dev` split only)
 
 1. Run `mise run score-dev` (or `uv run python evals/score.py --corpus evals/corpus.jsonl --split dev`) to record raw input scores.
-2. Generate rewrites for the 8 `dev` prompts in two modes using at least two model families (for example, one Claude model and one Gemini or GPT model) so instructions do not overfit a single model:
+2. Generate rewrites for the 24 `dev` prompts in two modes using at least two model families (for example, one Claude model and one Gemini or GPT model) so instructions do not overfit a single model:
    - `no-skill`: prompt alone (`evals/runs/baseline-noskill.jsonl`)
    - `v0`: prompt plus `skills/human-writing/SKILL.md` (`evals/runs/iter-00.jsonl`)
 3. Score `iter-00.jsonl` with:
@@ -25,6 +25,7 @@ Repeat on `split = dev` only (keep `split = test` untouched until the end):
 4. **Gate and compare:**
    - **Hard gate:** `--strict` must exit `0` (`100%` `must_preserve` verbatim match, word length ratio in `[0.75, 1.35]`), and preservation score must be `>= 4.5/5`.
    - **Keep rule:** Keep and `git commit` if blind A/B win rate against the previous kept best beats `50%` and `mean_output_penalty` drops (or ties with fewer words in `SKILL.md`).
+   - **Compare head to head:** Judge the candidate directly against the previous kept best. Comparing each version against `no-skill` separately is too noisy on a dev set this small; differences under about 0.1 are within judge noise. Have a judge from one model family score the outputs of a writer from another family.
    - **Revert rule:** Otherwise run `git checkout -- skills/human-writing/SKILL.md`, record the rejected hypothesis in `evals/results.tsv` so you do not retry it, and move on.
 
 ## 3. Optimize Frontmatter Discovery (`evals/triggers.json`)
@@ -38,5 +39,5 @@ After body instructions plateau:
 
 Once optimization on `dev` converges:
 
-1. Run `mise run score -- --corpus evals/corpus.jsonl --split test --outputs ... --strict`, blind A/B judge on the 4 `test` items, and `test` trigger checks.
+1. Run `mise run score -- --corpus evals/corpus.jsonl --split test --outputs ... --strict`, blind A/B judge on the 10 `test` items, and `test` trigger checks.
 2. Spot-check at least 5 blind A/B pairs yourself by reading them cold. If your judgment disagrees with the automated metrics, fix the rubric or scorer before continuing.
