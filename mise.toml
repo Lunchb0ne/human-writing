@@ -1,0 +1,30 @@
+[tools]
+uv = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
+python.uv_venv_auto = "create|source"
+
+[tasks.sync]
+description = "Sync eval Python dependencies into .venv"
+run = "uv sync"
+
+[tasks.test]
+description = "Run scorer unit tests"
+run = "python -m unittest evals/test_score.py"
+
+[tasks.score-skill]
+description = "Score skills/human-writing/SKILL.md"
+run = "python evals/score.py --text-file skills/human-writing/SKILL.md"
+
+[tasks.score-dev]
+description = "Score the dev split of evals/corpus.jsonl"
+run = "python evals/score.py --corpus evals/corpus.jsonl --split dev"
+
+[tasks.score]
+description = "Run evals/score.py with arbitrary arguments"
+run = "python evals/score.py"
+
+[tasks.ab]
+description = "Run evals/ab_eval.py with arbitrary arguments"
+run = "python evals/ab_eval.py"
