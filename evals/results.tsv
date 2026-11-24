@@ -1,0 +1,6 @@
+iter	commit	model	split	status	preserve_ok	len_ratio	psych_penalty	ab_win_rate	skill_words	notes
+raw-dev	70ae936	input	dev	baseline	8/8	1.000	18.74	-	396	en_core_web_sm std_dl=2.935
+noskill	70ae936	claude-sonnet-5-5	dev	baseline	8/8	1.209	11.20	-	0	en_core_web_sm std_dl=2.241 gate_fail=1(len>1.35) judge_preserve=4.688
+iter-00	70ae936	claude-sonnet-5-5	dev	baseline	8/8	1.322	6.32	0.6250	396	v0 vs noskill (5W/3L/0T) judge=gpt-sol-latest std_dl=2.394 gate_fail=4(len>1.35) judge_preserve=4.750
+noskill	70ae936	gemini-4-neon	dev	baseline	8/8	1.106	10.52	-	0	en_core_web_sm std_dl=2.391 gate_fail=0 judge_preserve=4.625
+iter-00	70ae936	gemini-4-neon	dev	baseline	8/8	1.266	3.21	0.5000	396	v0 vs noskill (4W/4L/0T) judge=gpt-sol-latest std_dl=2.194 gate_fail=1(len>1.35) judge_preserve=4.750
