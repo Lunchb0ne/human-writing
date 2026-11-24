@@ -1,0 +1,17 @@
+{
+  "name": "human-writing",
+  "version": "0.1.0",
+  "description": "Write and edit prose so that it is easy for humans to read, grounded in psycholinguistic findings on why AI text feels dense.",
+  "author": {
+    "name": "Abhishek Aryan"
+  },
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "editing",
+    "prose",
+    "readability",
+    "psycholinguistics",
+    "agent-skills"
+  ]
+}
