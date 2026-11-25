@@ -1,14 +1,23 @@
 # human-writing
 
-An agent skill for writing and editing prose so that humans can read it cleanly on a single pass.
+This is an agent skill for writing and editing prose. It helps the agent write text that people can read cleanly on a single pass.
 
-Grounded in Clark, Martin, and Mahowald (2026), [*Why is AI-generated language so hard to understand?*](https://arxiv.org/abs/2610.29162) (`arXiv:2610.29162`), this skill targets the syntactic compression habits that post-trained models pick up from coding, math, and verifiable-reward training.
+The skill is based on Clark, Martin, and Mahowald (2026), [*Why is AI-generated language so hard to understand?*](https://arxiv.org/abs/2610.29162) (`arXiv:2610.29162`). The paper shows that models compress their sentences after post-training on code, math, and tasks with verifiable rewards. They drop small words, stack nouns, and give objects human verbs. This skill undoes those habits. [`docs/related-work.md`](./docs/related-work.md) reviews related reading studies and the evidence behind each rule.
 
 ## How it differs from similar skills
 
-- **`blader/humanizer`** removes AI vocabulary clichés, forced triads, and promotional fluff.
+- **`blader/humanizer`** removes clichéd AI vocabulary, forced lists of three, and promotional fluff.
 - **`plain-writing`** favors brevity and direct language.
-- **`human-writing`** fixes syntactic parsing friction: missing `that` and `so that` cues, stacked noun compounds, inanimate subjects paired with human verbs, long subject-verb separations, ad-hoc denominal verbs, and telegraphic fragments, without padding text or dropping technical facts.
+- **`human-writing`** fixes sentences that make a reader stop and re-read. It does this without padding the text or dropping technical facts. The table below shows the habits that it targets.
+
+| Habit | Before | After |
+|---|---|---|
+| Dropped `that` | The test confirmed the cache we rebuilt the index for was stale. | The test confirmed that the cache that we rebuilt the index for was stale. |
+| Stacked nouns | the cache invalidation pipeline manager | the manager for the cache invalidation pipeline |
+| Objects with human verbs | `focusBand` remembers the index, and the docstring promises dotfiles are skipped. | `focusBand` stores the index, and the docstring says that dotfiles are skipped. |
+| Long gap between subject and verb | Shared controls (buttons, inputs, switches, and carets) live in Sass. | Shared controls live in Sass. They cover buttons, inputs, switches, and carets. |
+| Nouns used as verbs | We calendar'd a fix for Q3. | We scheduled a fix for Q3. |
+| Note-style fragments | New setting `lineHeight` (1.2 to 1.8). | We added a `lineHeight` setting, which ranges from 1.2 to 1.8. |
 
 ## Before and after
 
@@ -28,19 +37,27 @@ Read each version once, from top to bottom, without going back. Notice where you
 >
 > We also added a new flag, `--drain-before-restart`, which is off by default. Ops teams that run more than 8 workers per region should enable it so that restarts do not strand leases.
 
-The rewrite keeps every identifier, number, and caveat. It restores dropped `that` and `so that` cues, unpacks noun stacks such as "queue worker health check endpoint", replaces "remembers" and "doesn't know" with literal verbs, moves the long parenthetical out from between the subject and its verb, and turns the fragment about the new flag into a sentence. On `evals/score.py`, the penalty drops from 12.74 to 1.27 per 100 words, at the cost of 40 extra words.
+The rewrite keeps every identifier, number, and caveat. It makes these changes:
+
+- It restores the `that` and `so that` cues that the original dropped.
+- It unpacks noun stacks such as "queue worker health check endpoint".
+- It replaces "remembers" and "doesn't know" with literal verbs.
+- It moves the long parenthetical out from between the subject and its verb.
+- It turns the fragment about the new flag into a sentence.
+
+The penalty from `evals/score.py` drops from 12.74 to 1.27 per 100 words, and the text grows by 40 words.
 
 ## Installation
 
 ### Universal (`npx skills`)
 
-Works across Claude Code, Codex, Cursor, Antigravity, OpenCode, Windsurf, and other `agentskills.io` tools:
+This command works with Claude Code, Codex, Cursor, Antigravity, OpenCode, Windsurf, and other tools that support `agentskills.io`:
 
 ```bash
 npx skills add lunchb0ne/human-writing --global
 ```
 
-Or target specific agents:
+To install the skill for only some agents, name them:
 
 ```bash
 npx skills add lunchb0ne/human-writing --global --agent claude-code cursor codex
@@ -55,6 +72,8 @@ npx skills add lunchb0ne/human-writing --global --agent claude-code cursor codex
 
 ### Manual / Symlink (Antigravity, Claude Code, Codex)
 
+Clone the repository, then link the skill folder into each agent's skills directory:
+
 ```bash
 git clone https://github.com/lunchb0ne/human-writing.git
 ln -s "$PWD/human-writing/skills/human-writing" ~/.gemini/config/skills/human-writing
@@ -63,9 +82,9 @@ ln -s "$PWD/human-writing/skills/human-writing" ~/.claude/skills/human-writing
 
 ## Measuring and Hillclimbing the Skill
 
-See [`evals/hillclimb.md`](./evals/hillclimb.md) for the `autoresearch`-style optimization loop and [`evals/rubric.md`](./evals/rubric.md) for the blind A/B judging rubric.
+[`evals/hillclimb.md`](./evals/hillclimb.md) describes the loop that we use to optimize the skill, which is modeled on `autoresearch`. [`evals/rubric.md`](./evals/rubric.md) holds the rubric for blind A/B judging.
 
-Provision Python 3.12, `uv`, and the `spaCy` environment (`en_core_web_sm`) in `.venv` using `mise`:
+Use `mise` to set up Python 3.12, `uv`, and a `spaCy` environment with the `en_core_web_sm` model in `.venv`:
 
 ```bash
 mise install
@@ -75,7 +94,7 @@ mise run score-dev
 mise run score-skill
 ```
 
-Run ad-hoc scoring or validate a rewrite batch against hard preservation and length gates:
+To score a single file, or to check that a batch of rewrites keeps every required fact and stays within the length limits, run:
 
 ```bash
 mise run score -- --text-file README.md
