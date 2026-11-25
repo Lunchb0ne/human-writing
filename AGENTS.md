@@ -6,6 +6,7 @@ Open-standard agent skill (`agentskills.io`) and evaluation harness for human-re
 
 - `skills/human-writing/SKILL.md` holds the skill instructions distributed by `npx skills add` and `.claude-plugin/`. Keep it concise and focused on the editing workflow.
 - `skills/human-writing/references/research.md` holds the summary of Clark, Martin, and Mahowald (2026).
+- `docs/related-work.md` reviews related reading studies and the evidence behind each rule. It stays outside `skills/human-writing/` so that it does not ship with the skill.
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` expose the skill for Claude Code plugin marketplaces.
 - `evals/` holds the held-out `dev`/`test` corpus (`corpus.jsonl`), trigger suite (`triggers.json`), blind judging rubric (`rubric.md`), deterministic scorer (`score.py`), optimization runbook (`hillclimb.md`), and experiment log (`results.tsv`).
 
